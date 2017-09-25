@@ -8,8 +8,11 @@
     <title>Document</title>
 </head>
 <body>
-    <button class="btn btn-primary">Home</button>
-    <button class="btn btn-primary">About Us</button>
-    <button class="btn btn-primary">Contact</button>
+    <a ng-class="{'btn-primary': $ctrl.view === 'home'}" ng-click="$ctrl.setView('home')">Home</a>
+    <a ng-class="{'btn-primary': $ctrl.view === 'about us'}" ng-click="$ctrl.setView('about us')">About us</a>  
+
+    
+
+
 </body>
 </html>
