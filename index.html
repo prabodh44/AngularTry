@@ -4,103 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
+    <script src = "app.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-            <h1 class="text-danger">This is an Angular try</h1>
-            <div ng-app="myApp" ng-init="colors = ['red', 'blue', 'green'];">
-                <input type="text" ng-model="name">
-                <p>This is an example of AngularJS expression</p>
-                <p>The text in the input field is:  {{name}}</p>
-        
-                <h2>Examples of ng-bind and ng-model</h2>
-                <input type="text" ng-model="inputName"> <br>
-                The data in the input tag is: <span ng-bind="inputName"></span>
-        
-                <div ng-controller="myController">
-                    <h2>Example of a controller</h2>
-                    <form action="">
-                        <input type="text" ng-model="firstName" placeholder="firstname">
-                        <input type="text" placeholder="lastname" ng-model="lastName">
-                    </form>
-                    Full Name: {{firstName + " " + lastName}}
-
-                    <div ng-controller="calculateArea">
-                            <h2>Example of a controller with a function</h2>
-                            <input type="text" placeholder="Enter length" ng-model="length"> <br>
-                            <input type="text" placeholder="Enter breadth" ng-model="breadth"> <br>
-    
-                            The area is : {{area()}}
-                        </div>
-        
-                    <hr>
-                    <h2>An example of the ng-repeat directive</h2>
-                    <p ng-repeat="x in colors">
-                        <font color="{{x}}"> {{x}} </font>
-                    </p>
-                    
-                    
-                </div>
-
-                <div ng-controller="namesCtrl">
-                    <input type="text" ng-model="test">
-                    <ul ng-repeat="x in names | filter: test">
-                        {{ x }}
-                    </ul>
-
-                    <table class="table table-hover" ng-controller="listCtrl" > 
-                        <th ng-click="orderByMe('name')">Name</th>
-                        <th ng-click="orderByMe('country')">Country</th>
-                        <tr ng-repeat="x in list |  filter: myOrderByMe">
-                              <td>{{x.name}}</td>
-                              <td>{{x.country}}</td>  
-                        </tr>
-                    </table>
-                </div>
-        
-            </div> 
-    </div>
+    <div ng-app="myApp" ng-controller="RootController as root" class="container">
+        <header-component view="root.view" on-view-change="root.view = header.view" on-test="root.view= 'I am constant'"></header-component>
+        <body-component view="root.view"></body-component>
+    </div>       
 </body>
-<script>
-    var app = angular.module('myApp', []);
-    app.controller('myController', function($scope){
-        $scope.firstName = "Alan";
-        $scope.lastName = "Rickman";
-    });
-
-    app.controller('calculateArea', function($scope){
-       $scope.length = 5;
-       $scope.breadth = 8;
-       $scope.area = function(){
-           return $scope.length * $scope.breadth;
-       }
-    });
-
-    app.controller('namesCtrl', function($scope){
-        $scope.names = ['Prabodh', 'Manjil', 'Tina', 'Resma'];
-
-    });
-
-    app.controller('listCtrl', function($scope){
-        $scope.list = [
-            {name:'Jani',country:'Norway'},
-            {name:'Carl',country:'Sweden'},
-            {name:'Margareth',country:'England'},
-            {name:'Hege',country:'Norway'},
-            {name:'Joe',country:'Denmark'},
-            {name:'Gustav',country:'Sweden'},
-            {name:'Birgit',country:'Denmark'},
-            {name:'Mary',country:'England'},
-            {name:'Kai',country:'Norway'}
-        ];
-
-        $scope.orderByMe = function(x){
-            $scope.myOrderByMe = x;
-            
-        }
-    });
-</script>
 </html>
